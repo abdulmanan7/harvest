@@ -1,6 +1,8 @@
 Harvest Time Tracker
 ====================
 Simple time tracking, fast online invoicing, and powerful reporting software. Simplify employee timesheets and billing.
+Its Sample Utility for interaction with harvest api.
+Its Completly for my persional use . i will it more usefull in future.
 
 Installation
 ------------
@@ -28,4 +30,16 @@ Usage
 Once the extension is installed, simply use it in your code by  :
 
 ```php
-<?= \codefayakun\harvest\AutoloadExample::widget(); ?>```
+<?php 
+    // Get Current user information..
+    $result = \codefayakun\harvest\Harvest::getInfo('me');
+    $result->response;
+
+    // Create Client 
+    \codefayakun\harvest\Harvest::creatClient(
+        array(
+            'name' => 'Jon'
+        )
+    );
+
+ ?>```
