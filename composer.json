@@ -17,5 +17,11 @@
         "psr-4": {
             "codefayakun\\harvest\\": ""
         }
+    },
+    "repositories":[
+    {
+        "type": "git",
+        "url": "https://github.com/abdulmanan7/yii-harvest"
     }
+]
 }
