@@ -1,6 +1,6 @@
 <?php
 
-namespace codefayakun\harvest;
+namespace codefayakun\components;
 use Yii;
 use yii\base\Component;
 /**
@@ -8,9 +8,9 @@ use yii\base\Component;
  */
 class Harvest extends Component
 {
-	public $account_id ;
-	public $access_token ;
-	public $user_agent ;
+	public $account_id;
+	public $access_token;
+	public $user_agent;
 	public $response;
 	public function init()
 	{

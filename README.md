@@ -28,6 +28,16 @@ Usage
 -----
 
 Once the extension is installed, simply use it in your code by  :
+Add it to your config component array 
+```php
+'harvest'=> [
+    'class'          => 'codfayakun\yii2-harvest\Harvest',
+    'account_id'     => 'YOUR_ACCOUNT_ID',
+    'access_token'   => 'YOUR_SECRET',
+    'user_agent'     => 'APP (example@email.com)'
+],
+?>
+```
 
 ```php
 <?php 
