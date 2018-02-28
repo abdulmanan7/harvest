@@ -1,8 +1,13 @@
 {
     "name": "codfayakun/yii2-harvest",
     "description": "Simple time tracking, fast online invoicing, and powerful reporting software. Simplify employee timesheets and billing.",
-    "type": "library",
-    "keywords": ["yii2","extension","harvest","timer"],
+    "type": "yii2-extension",
+    "keywords": [
+        "yii2",
+        "extension",
+        "harvest",
+        "timer"
+    ],
     "license": "MIT",
     "authors": [
         {
@@ -18,10 +23,10 @@
             "codefayakun\\harvest\\": ""
         }
     },
-    "repositories":[
-    {
-        "type": "git",
-        "url": "https://github.com/abdulmanan7/yii-harvest"
-    }
-]
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/abdulmanan7/yii-harvest"
+        }
+    ]
 }

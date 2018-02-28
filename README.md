@@ -1,4 +1,4 @@
-Harvest Time Tracker
+Harvest Time Tracker Yii2 Wrapper
 ====================
 Simple time tracking, fast online invoicing, and powerful reporting software. Simplify employee timesheets and billing.
 Its Sample Utility for interaction with harvest api.
