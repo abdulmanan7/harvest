@@ -1,0 +1,21 @@
+{
+    "name": "codfayakun/yii2-harvest",
+    "description": "Simple time tracking, fast online invoicing, and powerful reporting software. Simplify employee timesheets and billing.",
+    "type": "library",
+    "keywords": ["yii2","extension","harvest","timer"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Abdul manan",
+            "email": "abdulmanan7@hotmail.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "~2.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "codefayakun\\harvest\\": ""
+        }
+    }
+}
