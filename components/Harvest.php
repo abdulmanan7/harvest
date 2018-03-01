@@ -1,8 +1,13 @@
 <?php
 
-namespace codefayakun\components;
+namespace codefayakun\harvest\components;
 use Yii;
 use yii\base\Component;
+use codefayakun\harvest\models\Client;
+use codefayakun\harvest\models\Project;
+use codefayakun\harvest\models\User;
+use codefayakun\harvest\models\TimeEntry;
+use codefayakun\harvest\models\Contact;
 /**
  * This is just an example.
  */
@@ -12,44 +17,253 @@ class Harvest extends Component
 	public $access_token;
 	public $user_agent;
 	public $response;
+	public $apiUrl = 'https://api.harvestapp.com/v2/';
 	public function init()
 	{
 
 	}
-	public function getInfo($user='me'){
-		$url = "https://api.harvestapp.com/v2/users/$user";
+	public function getCompany($user='me'){
+		$url = $this->apiUrl."company/";
+		return $this->_httpRequest($url);
+	}public function getInfo($user='me'){
+		$url = $this->apiUrl."users/$user";
+		return $this->_httpRequest($url);
+	}
+	public function listUsers(){
+		$url = $this->apiUrl."users/";
+		return $this->_httpRequest($url);
+	}
+	public function userProjects($id){
+		$url = $this->apiUrl."users/$id/project_assignments";
 		return $this->_httpRequest($url);
 	}
 	public function createUser($data){
-		return $this->_httpRequest('https://api.harvestapp.com/v2/users',$data);
+		$model = new User();
+		if ($model->load($data,'') && $model->validate()) {
+			$url = $this->apiUrl.'users/';
+			return $this->_httpRequest($url,$model);
+		}else{
+			return $model->errors;
+		}
+		return $this;
+	}
+	public function updateUser($id,$data){
+
+		$model = new User();
+		if ($model->load($data,'') && $model->validate()) {
+			$url = $this->apiUrl."users/$id";
+			return $this->_httpRequest($url,$model,'PATCH');
+		}else{
+			return $model->errors;
+		}
+		return $this;
+	}
+	public function deleteUser($id)
+	{
+		$url = $this->apiUrl.'users/'.$id;
+		return $this->_httpRequest($url,NULL,'DELETE');
+	}
+
+	public function getContact($id){
+		$url = $this->apiUrl."contacts/$id";
+		return $this->_httpRequest($url);
+	}
+	public function listContacts(){
+		$url = $this->apiUrl."contacts/";
+		return $this->_httpRequest($url);
+	}
+	public function createContact($data){
+		$model = new Contact();
+		if ($model->load($data,'') && $model->validate()) {
+			$url = $this->apiUrl.'contacts/';
+			return $this->_httpRequest($url,$model);
+		}else{
+			return $model->errors;
+		}
+		return $this;
+	}
+	public function updateContact($id,$data){
+
+		$model = new Contact();
+		if ($model->load($data,'') && $model->validate()) {
+			$url = $this->apiUrl."contacts/$id";
+			return $this->_httpRequest($url,$model,'PATCH');
+		}else{
+			return $model->errors;
+		}
+		return $this;
+	}
+	public function deleteContact($id)
+	{
+		$url = $this->apiUrl.'contacts/'.$id;
+		return $this->_httpRequest($url,NULL,'DELETE');
+	}
+	public function getTask($id){
+		$url = $this->apiUrl."tasks/$id";
+		return $this->_httpRequest($url);
+	}
+	public function listTasks(){
+		$url = $this->apiUrl."tasks/";
+		return $this->_httpRequest($url);
+	}
+	public function createTask($data){
+		$model = new Contact();
+		if ($model->load($data,'') && $model->validate()) {
+			$url = $this->apiUrl.'tasks/';
+			return $this->_httpRequest($url,$model);
+		}else{
+			return $model->errors;
+		}
+		return $this;
+	}
+	public function updateTask($id,$data){
+
+		$model = new Contact();
+		if ($model->load($data,'') && $model->validate()) {
+			$url = $this->apiUrl."tasks/$id";
+			return $this->_httpRequest($url,$model,'PATCH');
+		}else{
+			return $model->errors;
+		}
+		return $this;
+	}
+	public function deleteTask($id)
+	{
+		$url = $this->apiUrl.'tasks/'.$id;
+		return $this->_httpRequest($url,NULL,'DELETE');
+	}
+	public function getTimeEntry($id){
+		$url = $this->apiUrl."time_entries/$id";
+		return $this->_httpRequest($url);
+	}
+	public function listTimeEntries(){
+		$url = $this->apiUrl."time_entries/";
+		return $this->_httpRequest($url);
+	}
+	public function createTimeEntry($data){
+		$model = new TimeEntry();
+		if ($model->load($data,'') && $model->validate()) {
+			$url = $this->apiUrl.'time_entries/';
+			return $this->_httpRequest($url,$model);
+		}else{
+			return $model->errors;
+		}
+		return $this;
+	}
+	public function updateUpdateTimeEntry($id,$data){
+
+		$model = new Contact();
+		if ($model->load($data,'') && $model->validate()) {
+			$url = $this->apiUrl."time_entries/$id";
+			return $this->_httpRequest($url,$model,'PATCH');
+		}else{
+			return $model->errors;
+		}
+		return $this;
+	}
+	public function deleteTimeEntry($id)
+	{
+		$url = $this->apiUrl.'time_entries/'.$id;
+		return $this->_httpRequest($url,NULL,'DELETE');
+	}
+	public function restartTimeEntry($id)
+	{
+		$url = $this->apiUrl."time_entries/$id/restart/";
+		return $this->_httpRequest($url,null,'PATCH');
+	}
+	public function stopTimeEntry($id)
+	{
+		$url = $this->apiUrl."time_entries/$id/stop/";
+		return $this->_httpRequest($url,null,'PATCH');
+	}
+	public function listProjects()
+	{
+		$url = $this->apiUrl.'projects/';
+		return $this->_httpRequest($url);
+	}
+	public function getProject($id)
+	{
+		$url = $this->apiUrl.'projects/'.$id;
+		return $this->_httpRequest($url);
+	}
+	public function getProjectUserAssignment($project_id,$user_assig_id)
+	{
+		$url = $this->apiUrl."projects/$project_id/user_assignments/$user_assig_id/";
+		return $this->_httpRequest($url);
 	}
 	public function createProject($data){
-		return $this->_httpRequest('https://api.harvestapp.com/v2/projects',$data);
+		$model = new Project();
+		if ($model->load($data,'') && $model->validate()) {
+			$url = $this->apiUrl.'projects/';
+			return $this->_httpRequest($url,$model);
+		}else{
+			return $model->errors;
+		}
+		return $this;
 		// $data = array(
-		// 	'client_id'=>$clientId,
-		// 	'name'=>'New Project -'.date('d-m-Y'),
-		// 	'is_billable'=>true,
-		// 	'bill_by'=>"Project",
-		// 	'budget'=>true,
-		// 	'budget_by'=>true,
-		// 	'hourly_rate'=>true
-		// );
-		
+			// 	'client_id'=>$clientId,
+			// 	'name'=>'New Project -'.date('d-m-Y'),
+			// 	'is_billable'=>true,
+			// 	'bill_by'=>"Project",
+			// 	'budget'=>true,
+			// 	'budget_by'=>true,
+			// 	'hourly_rate'=>true
+			// );
+
+
 	} 
 	public function updateProject($id,$data)
 	{
-		$url = 'https://api.harvestapp.com/v2/projects/'.$id;
-		return $this->_httpRequest($url,$data,'PATCH');
+		$model = new Project();
+		if ($model->load($data,'') && $model->validate()) {
+			$url = $this->apiUrl.'projects/'.$id;
+			return $this->_httpRequest($url,$model,'PATCH');
+		}else{
+			return $model->errors;
+		}
+		return $this;
 	}
 	public function deleteProject($id)
 	{
-        $url = 'https://api.harvestapp.com/v2/projects/'.$id;
-        return $this->_httpRequest($url,NULL,'DELETE');
+		$url = $this->apiUrl.'projects/'.$id;
+		return $this->_httpRequest($url,NULL,'DELETE');
+	}
+	public function listClients()
+	{
+		$url = $this->apiUrl.'clients/';
+		return $this->_httpRequest($url);
+	}
+	public function getClient($id)
+	{
+		$url = $this->apiUrl.'clients/'.$id;
+		return $this->_httpRequest($url);
 	}
 	public function createClient($client)
 	{
-        $url = 'https://api.harvestapp.com/v2/clients/'.$id;
-        return $this->_httpRequest($url,$client);
+		$model = new Client();
+		if ($model->load($client,'') && $model->validate()) {
+			$url = $this->apiUrl.'clients/';
+			return $this->_httpRequest($url,$model);
+		}else{
+			return $model->errors;
+		}
+		return $this;
+	}
+	public function updateClient($id,$data)
+	{
+		$model = new Client();
+		if ($model->load($client,'') && $model->validate()) {
+			$url = $this->apiUrl.'clients/'.$id;
+			return $this->_httpRequest($url,$model,'PATCH');
+		}else{
+			return $model->errors;
+		}
+		return $this;
+	}
+	public function deleteClient($id)
+	{
+		$url = $this->apiUrl.'clients/'.$id;
+		return $this->_httpRequest($url,NULL,'DELETE');
 	}
 	private function _httpRequest($url,$data=NULL,$method=NULL){
 
