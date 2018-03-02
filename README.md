@@ -15,9 +15,9 @@ Either run
 php composer.phar require --prefer-dist codefayakun/yii2-harvest "*"
 ```
 or try 
-
+```
 php composer.phar require  codefayakun/yii2-harvest "dev-master"
-
+```
 or add
 
 ```
