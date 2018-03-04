@@ -50,7 +50,7 @@ Add it to your config component array
 
     Other GET functions you can called.
 
-    // getting listing
+    // get listing
 
     \Yii::$app->harvest->listUsers();
     \Yii::$app->harvest->listTasks();
@@ -59,7 +59,7 @@ Add it to your config component array
     \Yii::$app->harvest->listContacts();
     \Yii::$app->harvest->listTimeEntries();
 
-    // getting single record base on ID.
+    // get single record base on ID.
 
     \Yii::$app->harvest->getCompany();
     \Yii::$app->harvest->getUser($id);
@@ -96,14 +96,14 @@ Add it to your config component array
 
     // similar we have for data format you can pass to these method. you can visit official site. 
 
-     createTask();
-     updateTask();
-     createUser();
-     updateUser();
-     createTimeEntry();
-     updateTimeEntry();
-     createContact();
-     updateContact();
+     \Yii::$app->harvest->createTask();
+     \Yii::$app->harvest->updateTask();
+     \Yii::$app->harvest->createUser();
+     \Yii::$app->harvest->updateUser();
+     \Yii::$app->harvest->createTimeEntry();
+     \Yii::$app->harvest->updateTimeEntry();
+     \Yii::$app->harvest->createContact();
+     \Yii::$app->harvest->updateContact();
 
      // delete methods
      
