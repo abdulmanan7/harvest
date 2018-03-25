@@ -10,10 +10,10 @@ use Yii;
 class Task extends Model
 {
     public $name;
-    public $billable_by_default;
-    public $default_hourly_rate;
-    public $is_default;
-    public $is_active;
+    public $billable_by_default=true;
+    public $default_hourly_rate=0;
+    public $is_default=false;
+    public $is_active=true;
 
     /**
      * @inheritdoc
