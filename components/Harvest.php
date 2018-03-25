@@ -8,6 +8,7 @@ use codefayakun\harvest\models\Project;
 use codefayakun\harvest\models\User;
 use codefayakun\harvest\models\TimeEntry;
 use codefayakun\harvest\models\Contact;
+use codefayakun\harvest\models\Task;
 /**
  * This is just an example.
  */
@@ -107,7 +108,7 @@ class Harvest extends Component
 		return $this->_httpRequest($url);
 	}
 	public function createTask($data){
-		$model = new Contact();
+		$model = new Task();
 		if ($model->load($data,'') && $model->validate()) {
 			$url = $this->apiUrl.'tasks/';
 			return $this->_httpRequest($url,$model);
@@ -118,7 +119,7 @@ class Harvest extends Component
 	}
 	public function updateTask($id,$data){
 
-		$model = new Contact();
+		$model = new Task();
 		if ($model->load($data,'') && $model->validate()) {
 			$url = $this->apiUrl."tasks/$id";
 			return $this->_httpRequest($url,$model,'PATCH');
@@ -152,7 +153,7 @@ class Harvest extends Component
 	}
 	public function updateUpdateTimeEntry($id,$data){
 
-		$model = new Contact();
+		$model = new TimeEntry();
 		if ($model->load($data,'') && $model->validate()) {
 			$url = $this->apiUrl."time_entries/$id";
 			return $this->_httpRequest($url,$model,'PATCH');
@@ -200,15 +201,6 @@ class Harvest extends Component
 			return $model->errors;
 		}
 		return $this;
-		// $data = array(
-			// 	'client_id'=>$clientId,
-			// 	'name'=>'New Project -'.date('d-m-Y'),
-			// 	'is_billable'=>true,
-			// 	'bill_by'=>"Project",
-			// 	'budget'=>true,
-			// 	'budget_by'=>true,
-			// 	'hourly_rate'=>true
-			// );
 
 
 	} 

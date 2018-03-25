@@ -26,7 +26,7 @@ class Project extends Model
        public $starts_on;
        public $ends_on;
        public $is_billable;
-       public $is_fixed_fee;
+       public $is_fixed_fee=false;
        public $notes;
        public $client_id;
        public $cost_budget;
@@ -42,6 +42,7 @@ class Project extends Model
         return [
             [['client_id','name','is_billable','bill_by','budget_by'], 'filter', 'filter' => 'trim'],
             [['client_id','name','is_billable','bill_by','budget_by'], 'required'],
+            [['is_fixed_fee','show_budget_to_all','cost_budget_include_expenses'], 'boolean'],
         ];
     }
     
